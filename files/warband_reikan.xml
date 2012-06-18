@@ -1,0 +1,14 @@
+<warband>
+	<equipment>
+		<bla>sword,shield,freedagger,dagger,etc,etc,etc</bla>
+		<marksmen>long bow, short bow</marksmen>
+	</equipment>
+	<heroes>
+		<Captain Skills="true,true,true,true,true" Stats="4,4,4,3,3,1,4,1,8" exp="20" min="1" max="1" cost="60" race="human" wargear="bla"></Captain>
+		<Champion Skills="true,true,false,true,true" Stats="4,4,3,3,3,1,3,1,7" exp="8" min="0" max="2" cost="35" race="human" wargear="bla"></Champion>
+		<Youngblood Skills="true,true,false,false,true" Stats="4,2,2,3,3,1,3,1,6" exp="0" min="0" max="2" cost="15" race="human" wargear="bla"></Youngblood>
+	</heroes>
+	<henchmen>
+		<Youngblood Stats="4,2,2,3,3,1,3,1,6" exp="20" min="0" max="2" cost="15" race="human" wargear="bla"></Youngblood>
+	</henchmen>
+</warband>
