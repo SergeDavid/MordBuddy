@@ -1,75 +1,115 @@
-<maxStats>
-	<human stats="4,6,6,4,4,3,6,4,9"></human>
-	<elf stats="5 7 7 4 4 3 9 4 10"></elf>
-	<dwarf stats="3 7 6 4 5 3 5 4 10"></dwarf>
-	<orge stats="6 6 5 5 5 5 6 5 9"></orge>
-	<halfling stats="4 5 7 3 3 3 9 4 10"></halfling>
-	<beastman stats="4 7 6 4 5 4 6 4 9"></beastman>
-	<possessed stats="6 8 0 6 6 4 7 5 10"></possessed>
-	<vampire stats="6 8 6 7 6 4 9 4 10"></vampire>
-	<skaven stats="6 6 6 4 4 3 7 4 7"></skaven>
-	<ghoul stats="5 5 2 4 5 3 5 5 7"></ghoul>
-	<henchexp stats=14></henchexp>
-	<heroexp stats=90></heroexp>
-</maxStats>
-
-<equipment>
-	<close_combat>
-		<axe cost="5" available="common"></axe>
-		<club cost="3" available="common"></club>
-		<freedagger cost="0" available="common"></freedagger>
-		<dagger cost="2" available="common"></dagger>
-		<double-handed cost="15" available="common"></double-handed>
-		<flail cost="15" available="common"></flail>
-		<gromril_weapon cost="-4" available="Rare 11"></gromril_weapon>
-		<halberd cost="10" available="common"></halberd>
-		<ithilmar_weapon cost="-3" available="Rare 9"></ithilmar_weapon>
-		<lance cost="40" available="Rare 8"></lance>
-		<mornin_star cost="15" available="common"></mornin_star>
-		<spear cost="10" available="common"></spear>
-		<sword cost="10" available="common"></sword>
-	</close_combat>
-	<ranged>
-	</ranged>
-	<blackpowder>
-	</blackpowder>
-</equipment>
-
-<magic>
-</magic>
-<skills>
-	<combat>
-		<Strike_to_Injure rule="The warrior can land his blows with uncanny accuracy. Add +1 to all injury rolls caused by the model in hand-to-hand combat."></Strike_to_Injure>
-		<Combat_Master rule="The warrior is able to take on several opponents at once. If he fights against more than one enemy at a time, he gains an extra Attack in each hand-to-hand combat phase as long as he is fighting two or more enemy models. In addition, the warrior is immune to ‘All Alone’ tests."></Combat_Master>
-		<Weapons_Training rule="A warrior with this skill is adept at using many different weapons. He may use any hand-to-hand combat weapon he comes across, not just those in his equipment options."></Weapons_Training>
-		<Web_of_Steel rule="Few can match the ability of this warrior. He fights with great skill, weaving a web of steel around him. The model gains +1 to all his rolls on Critical Hit tables in hand-to-hand combat."></Web_of_Steel>
-		<Expert_Swordsman rule="This warrior has been expertly taught in the art of swordsmanship. He may re-roll all missed attacks if he is using a sword in the hand-tohand phase of the turn that he charges. Note that this only applies when they are armed with normal swords or weeping blades, and not with doublehanded swords or any other weapons."></Expert_Swordsman>
-		<Step_Aside rule="The warrior has a natural ability to avoid injury in combat. Each time he suffers a wound in close combat he may make an additional saving throw of 5+. This save is never modified and is taken after all other armour saves."></Step_Aside>
-	</combat>
-	<shooting>
-		<Quick_Shot rule="The warrior may shoot twice per turn with a bow or crossbow (but not a crossbow pistol)."></Quick_Shot>
-		<Pistolier rule="The warrior is an expert at using all kinds of pistols. If he is equipped with a brace of pistols of any type (including crossbow pistols), he may fire twice in the Shooting phase (though note that normal reloading rules apply). If he has a single pistol then he may fire it in the same turn it was reloaded."></Pistolier>
-		<Eagle_Eyes rule='The warrior’s sight is exceptionally keen. He adds +6" to the range of any missile weapon he is using.'></Eagle_Eyes>
-		<Weapons_Expert rule="The warrior has been trained to use some of the more unusual weapons of the known world. He may use any missile weapon he comes across, not just the weapons available from his warband’s list."></Weapons_Expert>
-		<Nimble rule="The warrior may move and fire with weapons that are normally only used if the firer has not moved. Note that this skill cannot be combined with the Quick Shot skill."></Nimble>
-		<Trick_Shooter rule="The warrior can shoot through the tiniest gap without it affecting his aim. He ignores all modifiers for cover when using missile weapons."></Trick_Shooter>
-		<Hunter rule="The warrior is an expert at getting his weapon loaded and ready. He may fire each turn with a handgun or Hochland long rifle."></Hunter>
-		<Knife-Fighter rule="The warrior is an unrivalled expert at using throwing knives and throwing stars. He can throw a maximum of three of these missiles in his shooting phase and may divide his shots between any targets within range as he wishes. Note that this skill cannot be combined with the Quick Shot skill."></Knife-Fighter>
-	</shooting>
-	<academic>
-	</academic>
-	<strength>
-	</strength>
-	<speed>
-	</speed>
-</skills>
-
-<injury>
-	<hero>
-<dead min=11 max=15 rule="The warrior is dead and his body is abandoned in the
+<universal>
+	<maxStats>
+		<human>4,6,6,4,4,3,6,4,9</human>
+		<elf>5,7,7,4,4,3,9,4,10</elf>
+		<dwarf>3,7,6,4,5,3,5,4,10</dwarf>
+		<orge>6,6,5,5,5,5,6,5,9</orge>
+		<halfling>4,5,7,3,3,3,9,4,10</halfling>
+		<beastman>4,7,6,4,5,4,6,4,9</beastman>
+		<possessed>6,8,0,6,6,4,7,5,10</possessed>
+		<vampire>6,8,6,7,6,4,9,4,10</vampire>
+		<skaven>6,6,6,4,4,3,7,4,7</skaven>
+		<ghoul>5,5,2,4,5,3,5,5,7</ghoul>
+		<orcs>4,6,6,4,5,3,5,4,9</orcs>
+	</maxStats>
+	<experience>
+		<henchexp>14</henchexp>
+		<heroexp>90</heroexp>
+	</experience>
+	<equipment>
+		<!-- availability 0 = common, 1~12 = rare roll you have to match -->
+		<close_combat>
+			<axe>
+				<type>combat</type>
+				<cost>5</cost>
+				<rules>+2 str</rules>
+				<available>0</available>
+			</axe>
+			<club>
+				<cost>3</cost>
+				<available>0</available>
+			</club>
+			<freedagger>
+				<cost>0</cost>
+				<available>0</available>
+			</freedagger>
+			<dagger>
+				<cost>2</cost>
+				<available>0</available>
+			</dagger>
+			<double-handed>
+				<cost>15</cost>
+				<available>0</available>
+			</double-handed>
+			<flail>
+				<cost>15</cost>
+				<available>0</available>
+			</flail>
+			<halberd>
+				<cost>10</cost>
+				<available>0</available>
+			</halberd>
+			<lance>
+				<cost>40</cost>
+				<available>8</available>
+			</lance>
+			<mornin_star>
+				<cost>15</cost>
+				<available>0</available>
+			</mornin_star>
+			<spear>
+				<cost>10</cost>
+				<available>0</available>
+			</spear>
+			<sword>
+				<cost>10</cost>
+				<available>0</available>
+			</sword>
+		</close_combat>
+		<ranged>
+		</ranged>
+		<blackpowder>
+		</blackpowder>
+	</equipment>
+	<magic>
+	</magic>
+	<skills>
+		<combat>
+			<Strike_to_Injure rule="The warrior can land his blows with uncanny accuracy. Add +1 to all injury rolls caused by the model in hand-to-hand combat."></Strike_to_Injure>
+			<Combat_Master rule="The warrior is able to take on several opponents at once. If he fights against more than one enemy at a time, he gains an extra Attack in each hand-to-hand combat phase as long as he is fighting two or more enemy models. In addition, the warrior is immune to ‘All Alone’ tests."></Combat_Master>
+			<Weapons_Training rule="A warrior with this skill is adept at using many different weapons. He may use any hand-to-hand combat weapon he comes across, not just those in his equipment options."></Weapons_Training>
+			<Web_of_Steel rule="Few can match the ability of this warrior. He fights with great skill, weaving a web of steel around him. The model gains +1 to all his rolls on Critical Hit tables in hand-to-hand combat."></Web_of_Steel>
+			<Expert_Swordsman rule="This warrior has been expertly taught in the art of swordsmanship. He may re-roll all missed attacks if he is using a sword in the hand-tohand phase of the turn that he charges. Note that this only applies when they are armed with normal swords or weeping blades, and not with doublehanded swords or any other weapons."></Expert_Swordsman>
+			<Step_Aside rule="The warrior has a natural ability to avoid injury in combat. Each time he suffers a wound in close combat he may make an additional saving throw of 5+. This save is never modified and is taken after all other armour saves."></Step_Aside>
+		</combat>
+		<shooting>
+			<Quick_Shot rule="The warrior may shoot twice per turn with a bow or crossbow (but not a crossbow pistol)."></Quick_Shot>
+			<Pistolier rule="The warrior is an expert at using all kinds of pistols. If he is equipped with a brace of pistols of any type (including crossbow pistols), he may fire twice in the Shooting phase (though note that normal reloading rules apply). If he has a single pistol then he may fire it in the same turn it was reloaded."></Pistolier>
+			<Eagle_Eyes rule='The warrior’s sight is exceptionally keen. He adds +6" to the range of any missile weapon he is using.'></Eagle_Eyes>
+			<Weapons_Expert rule="The warrior has been trained to use some of the more unusual weapons of the known world. He may use any missile weapon he comes across, not just the weapons available from his warband’s list."></Weapons_Expert>
+			<Nimble rule="The warrior may move and fire with weapons that are normally only used if the firer has not moved. Note that this skill cannot be combined with the Quick Shot skill."></Nimble>
+			<Trick_Shooter rule="The warrior can shoot through the tiniest gap without it affecting his aim. He ignores all modifiers for cover when using missile weapons."></Trick_Shooter>
+			<Hunter rule="The warrior is an expert at getting his weapon loaded and ready. He may fire each turn with a handgun or Hochland long rifle."></Hunter>
+			<Knife-Fighter rule="The warrior is an unrivalled expert at using throwing knives and throwing stars. He can throw a maximum of three of these missiles in his shooting phase and may divide his shots between any targets within range as he wishes. Note that this skill cannot be combined with the Quick Shot skill."></Knife-Fighter>
+		</shooting>
+		<academic>
+		</academic>
+		<strength>
+		</strength>
+		<speed>
+		</speed>
+	</skills>
+	<injury>
+		<hero>
+			<dead> 
+				<min>11</min>
+				<max>15</max>
+				<rule>The warrior is dead and his body is abandoned in the
 dark alleys of Mordheim, never to be found again. All
-the weapons and equipment he carried are lost.
-Remove him from the warband’s roster."></dead>
+the weapons and equipment he carried are lost. 
+Remove him from the warband’s roster.</rule>
+			</dead>
+<!-- derp derp
 <multiple_injuries min=16 max=21 rule="The warrior is not dead but has suffered a lot of
 wounds. Roll D6 times on this table. Re-roll any
 ‘Dead’, ‘Captured’ and further ‘Multiple Injuries’
@@ -92,7 +132,7 @@ game."></shashed_leg>
 The warrior has been badly wounded in the chest. He
 recovers but is weakened by the injury so his
 Toughness is reduced by -1."></chest_wound>
-<!--31 BLINDED IN ONE EYE
+31 BLINDED IN ONE EYE
 The warrior survives but loses the sight in one eye;
 randomly determine which. A character that loses an
 eye has his Ballistic Skill reduced by -1. If the warrior
@@ -152,7 +192,7 @@ The warrior survives and becomes inured to the
 horrors of Mordheim. From now on he is immune to
 fear.
 64 HORRIBLE SCARS
-The warrior causes fear from now on.-->
+The warrior causes fear from now on.
 <sold_to_the_pits min=65 max=65 rule="
 The warrior wakes up in the infamous fighting pits of
 Cutthroat’s Haven and must fight against a Pit Fighter.
@@ -168,10 +208,17 @@ is free to rejoin his warband with all his weapons and
 equipment."></sold_to_the_pits>
 <survives_against_the_odds min=66 max=66 rule="
 The warrior survives and rejoins his warband. He
-gains +1 Experience."></survives_against_the_odds>
-	</hero>
-	<henchmen>
-		<dead min=1 max=2></dead>
-		<fine min=3 max=6></fine>
-	</henchmen>
-</injury>
+gains +1 Experience."></survives_against_the_odds>-->
+		</hero>
+		<henchmen>
+			<dead>
+				<min>1</min>
+				<max>2</max>
+			</dead>
+			<fine>
+				<min>3</min>
+				<max>6</max>
+			</fine>
+		</henchmen>
+	</injury>
+</universal>

@@ -1,4 +1,4 @@
-package code.gui;
+package code.gui.panels;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -48,7 +48,6 @@ public class heroPanel extends JPanel {
 	private JLabel label2;//type
 	
 	public heroPanel(int id_num) {
-		System.out.println("number : "+id_num);
 		hero = Program.warband.heroes[id_num];
 		//name
 		label1 = new JLabel("Name");

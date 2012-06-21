@@ -2,8 +2,11 @@ package code.gui;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-
 import code.Program;
+import code.gui.panels.AddPanel;
+import code.gui.panels.GeneralPanel;
+import code.gui.panels.henchPanel;
+import code.gui.panels.heroPanel;
 
 public class mainPage extends JTabbedPane {
 	public mainPage() {
@@ -30,7 +33,7 @@ public class mainPage extends JTabbedPane {
 				heropan.addTab(heroes[i].type.getText(), null, heroes[i], null);
 			}
 			else if (hithero) {
-				JPanel newpanel = new JPanel();
+				AddPanel newpanel = new AddPanel();
 				heropan.addTab("Add", null, newpanel, null);
 				hithero = false;
 			}
@@ -39,7 +42,7 @@ public class mainPage extends JTabbedPane {
 				henchpan.addTab(henchmen[i].type.getText(), null, henchmen[i], null);
 			}
 			else if (hithench) {
-				JPanel newpanel = new JPanel();
+				AddPanel newpanel = new AddPanel();
 				henchpan.addTab("Add", null, newpanel, null);
 				hithench = false;
 			}

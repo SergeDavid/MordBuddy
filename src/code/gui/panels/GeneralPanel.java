@@ -1,4 +1,4 @@
-package code.gui;
+package code.gui.panels;
 
 import java.awt.Color;
 
@@ -60,7 +60,7 @@ public class GeneralPanel extends JPanel {
 		//Equipment
 		JLabel lblStoredEquipment = new JLabel("Stored Equipment");
 		JTextArea textArea = new JTextArea();
-		textArea.setRows(8);
+		textArea.setRows(9);
 		
 		//Buttons
 		JButton btnSave = new JButton("Save");
@@ -73,29 +73,30 @@ public class GeneralPanel extends JPanel {
 		
 		GroupLayout gl_generalpan = new GroupLayout(this);
 		gl_generalpan.setHorizontalGroup(
-				gl_generalpan.createParallelGroup(Alignment.LEADING)
+			gl_generalpan.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_generalpan.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_generalpan.createParallelGroup(Alignment.LEADING)
+						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
 						.addComponent(lblStoredEquipment)
-						.addGroup(gl_generalpan.createParallelGroup(Alignment.LEADING, false)
-							.addGroup(gl_generalpan.createSequentialGroup()
-								.addComponent(btnExploration)
-								.addGap(18)
-								.addComponent(btnAddEquipment)
-								.addGap(18)
-								.addComponent(btnNewBattle, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-								.addGap(18)
-								.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
-							.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 540, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_generalpan.createSequentialGroup()
+							.addComponent(btnExploration)
+							.addGap(18)
+							.addComponent(btnAddEquipment)
+							.addGap(18)
+							.addComponent(btnNewBattle, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_generalpan.createSequentialGroup()
 							.addGroup(gl_generalpan.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_generalpan.createSequentialGroup()
 									.addComponent(lblWarbandName)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(name, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE))
+									.addComponent(name, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblWarbandType))
 								.addGroup(gl_generalpan.createSequentialGroup()
 									.addGroup(gl_generalpan.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblGoldCrowns)
@@ -114,18 +115,16 @@ public class GeneralPanel extends JPanel {
 											.addComponent(lblRating)
 											.addPreferredGap(ComponentPlacement.UNRELATED)
 											.addComponent(rating, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_generalpan.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_generalpan.createSequentialGroup()
-									.addComponent(lblWarbandType)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(type, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_generalpan.createSequentialGroup()
 									.addGap(10)
 									.addGroup(gl_generalpan.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblOtherStat)
-										.addComponent(lblNewLabel))))))
-					.addContainerGap(17, Short.MAX_VALUE))
+										.addComponent(lblNewLabel)))
+								.addGroup(gl_generalpan.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(type, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap())
 		);
 		gl_generalpan.setVerticalGroup(
 			gl_generalpan.createParallelGroup(Alignment.LEADING)
@@ -158,11 +157,11 @@ public class GeneralPanel extends JPanel {
 					.addGap(18)
 					.addGroup(gl_generalpan.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_generalpan.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnSave, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-							.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE))
+							.addComponent(btnNewBattle, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+							.addComponent(btnSave, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+						.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnExploration, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-						.addComponent(btnAddEquipment, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-						.addComponent(btnNewBattle, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+						.addComponent(btnAddEquipment, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
 					.addGap(82))
 		);
 		setLayout(gl_generalpan);

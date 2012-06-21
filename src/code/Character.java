@@ -1,23 +1,36 @@
 package code;
 
 public class Character {
-	public String name = "Name";
-	public String type = "Type";
+	public String name = "Name";//
+	public String type = "Type";//Captain, Youngblood, Warrior, etc.
+	public int cost = 1;//Cost to buy in game, upkeep is half this.
 	
+	//How many you can take in a warband, zero max is unlimited.
+	public int min = 0;
+	public int max = 0;
+	
+	//The different races the character can be.
 	enum Race {human,elf,dwarf,orge,halfling,beastman,possessed,vampire,skaven,ghoul};
 	public Race race;
 	
+	//Stats, TODO: Revamp it with max being pulled from universal.
 	enum Stats {M,WS,BS,S,T,W,I,A,Ld,EXP};
 	public int movement,weaponSkill,balisticSkill,strength,toughness,wounds,inititive,attacks,leadership,experience = 0;
-	public int maxM,maxWS,maxBS,maxS,maxT,maxW,maxI,maxA,maxLd,maxEXP = 5;
+	public int maxM,maxWS,maxBS,maxS,maxT,maxW,maxI,maxA,maxLd,maxEXP = 10;
 	
+	//Experience, TODO: hero levels and total along with henchmen levels and total should be put into universal
 	public int exp;
+	public int levels;//Marks how many levels the character needs to advance for.
 	//heroes total = 90, levels at 2,4,6,811,14,17,20,24,28,32,36,41,46,51,57,63,69,76,83,90
 	//henchmen total = 14, levels at 2, 5, 9, 14
+	
+	//Equipment and Sats
 	public String equipment;
 	public String skills;
-	//Equipment[] equipped;//Unused right now until I objecterize everything.
-	//Skills[] skills;//I need my list of skills, injuries, etc
+	//ArrayList<Equipment> equipped = new ArrayList<Equipment>();//Unused right now until I objecterize everything.
+	//Skills[] skills;
+	//Magic
+	//Injuries
 	
 	public Character() {
 		
@@ -38,8 +51,7 @@ public class Character {
 		return false;
 	}
 	
-	public void stats(String string) {
-		String[] s = string.split(",");
+	public void setStats(String[] s) {
 		movement = Integer.parseInt(s[0]);
 		weaponSkill = Integer.parseInt(s[1]);
 		balisticSkill = Integer.parseInt(s[2]);
