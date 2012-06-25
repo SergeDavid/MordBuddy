@@ -16,14 +16,13 @@ public class mainPage extends JTabbedPane {
 		JPanel other = new JPanel();
 		JPanel personae = new JPanel();
 		general = new GeneralPanel();
+		
 		this.addTab("General", null, general, null);
 		this.addTab("Heroes", null, heropan, null);
 		this.addTab("Henchmen", null, henchpan, null);
 		this.addTab("Hired Swords", null, hiredswords, null);
 		this.addTab("Dramatis Personae", null, personae, null);
 		this.addTab("Other", null, other, null);
-		/*heroPanel heropanel = new heroPanel(0);heropan.addTab("Hero " + (1), null, heropanel, null);
-		henchPanel henchpanel = new henchPanel(0);henchpan.addTab("Group" + (1), null, henchpanel, null);*/
 		
 		boolean hithero = true;
 		boolean hithench = true;

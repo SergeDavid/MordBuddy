@@ -3,9 +3,6 @@ package code;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import code.etc.Injury;
-import code.etc.Magic;
-import code.etc.Skill;
 import code.gui.Gui;
 
 public class Program extends JFrame {
@@ -22,10 +19,10 @@ public class Program extends JFrame {
 	
 	//Master Lists
 	public static ArrayList<Warband> bands = new ArrayList<Warband>();
-	public static ArrayList<Skill> skills = new ArrayList<Skill>();
+	public static ArrayList<Modifiers> skills = new ArrayList<Modifiers>();
 	public static ArrayList<Equipment> equipment = new ArrayList<Equipment>();
-	public static ArrayList<Magic> magic = new ArrayList<Magic>();
-	public static ArrayList<Injury> injuries = new ArrayList<Injury>();
+	public static ArrayList<Modifiers> magic = new ArrayList<Modifiers>();
+	public static ArrayList<Modifiers> injuries = new ArrayList<Modifiers>();
 	
 	//working list
 	public static Warband warband;
@@ -58,7 +55,7 @@ public class Program extends JFrame {
 		gui.change(Gui.pane.main);
 	}
 	public static void loadWarband() {
-		xml.loadWarband("my_reikan");
+		new code.xml.loadWarband("my_reikan");
 	}
 
 	public static String[] warbandNames() {

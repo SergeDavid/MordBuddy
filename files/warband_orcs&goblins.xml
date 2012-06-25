@@ -13,6 +13,7 @@
 			<max>1</max>
 			<cost>80</cost>
 			<race>orc</race>
+			<rules></rules>
 		</hero>
 		<hero>
 			<name>Shaman</name>
@@ -22,6 +23,7 @@
 			<max>2</max>
 			<cost>40</cost>
 			<race>orc</race>
+			<rules></rules>
 		</hero>
 		<hero>
 			<name>Big ’Un</name>
@@ -31,6 +33,7 @@
 			<max>2</max>
 			<cost>40</cost>
 			<race>orc</race>
+			<rules></rules>
 		</hero>
 	</heroes>
 	<henchmen>
@@ -42,6 +45,7 @@
 			<size>5</size>
 			<cost>25</cost>
 			<race>human</race>
+			<rules></rules>
 		</group>
 		<group>
 			<name>Marksmen</name>
@@ -51,6 +55,7 @@
 			<size>5</size>
 			<cost>25</cost>
 			<race>human</race>
+			<rules></rules>
 		</group>
 		<group>
 			<name>Swordsmen</name>
@@ -60,6 +65,7 @@
 			<size>5</size>
 			<cost>35</cost>
 			<race>human</race>
+			<rules></rules>
 		</group>
 	</henchmen>
 </warband>

@@ -9,9 +9,8 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
-
 import code.Program;
-
+import code.gui.popups.changeStats;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -47,32 +46,46 @@ public class loadPage extends JPanel {
 				return values[index];
 			}
 		});
+		
+		changeStats internalFrame = new changeStats("New JInternalFrame");
+		internalFrame.setClosable(true);
+		internalFrame.setResizable(true);
+		internalFrame.setMaximizable(true);
+		internalFrame.setVisible(true);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(38)
-							.addComponent(list, GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+							.addComponent(list, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
 							.addGap(38))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(btnStartWarband)
-									.addPreferredGap(ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
 									.addComponent(btnReturn))
-								.addComponent(lblChooseAWarband))))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblChooseAWarband)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(internalFrame, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblChooseAWarband)
-					.addGap(18)
-					.addComponent(list, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblChooseAWarband)
+							.addGap(24))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(internalFrame, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)))
+					.addComponent(list, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnReturn)

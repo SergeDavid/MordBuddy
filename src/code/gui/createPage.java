@@ -9,9 +9,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
-
 import code.Program;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -49,10 +47,10 @@ public class createPage extends JPanel {
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(38)
 							.addComponent(list, GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
 							.addGap(38))

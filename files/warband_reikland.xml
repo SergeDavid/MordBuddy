@@ -3,18 +3,32 @@
 		<name>Reikland</name>
 		<gold>500</gold>
 		<size>15</size>
-		<equipment>Lists for each group, or just put them in each profile or something until I do this.</equipment>
-		<skills>Special Skills</skills>
+		<rules>
+			objects
+		</rules>
+		<equipment>
+			multiple lists
+		</equipment>
+		<skills>
+			objests
+		</skills>
+		<magic>
+			objects
+		</magic>
+		<hired>
+			List
+		</hired>
 	</general>
 	<heroes>
 		<hero>
 			<name>Mercenary Captain</name>
-			<skills>true,true,true,true,true,false</skills>
-			<stats>4,4,4,3,3,1,4,1,8,20</stats>
-			<min>1</min>
-			<max>1</max>
+			<skills>true,true,true,true,true,false</skills><!-- combat,shooting,academic,strength,speed,special -->
+			<stats>4,4,4,3,3,1,4,1,8,20</stats><!-- m,ws,bs,s,t,w,i,a,ld,exp -->
+			<min>1</min><!-- minimum you can take -->
+			<max>1</max><!-- maximum you can take -->
 			<cost>60</cost>
-			<race>human</race>
+			<race>human</race><!-- used to compare with max stats for that race -->
+			<rules>12"Leader</rules>
 		</hero>
 		<hero>
 			<name>Champion</name>
@@ -24,6 +38,7 @@
 			<max>2</max>
 			<cost>35</cost>
 			<race>human</race>
+			<rules></rules>
 		</hero>
 		<hero>
 			<name>Youngblood</name>
@@ -33,6 +48,7 @@
 			<max>2</max>
 			<cost>15</cost>
 			<race>human</race>
+			<rules></rules>
 		</hero>
 	</heroes>
 	<henchmen>
@@ -44,7 +60,7 @@
 			<size>5</size>
 			<cost>25</cost>
 			<race>human</race>
-			<talent>true</talent>
+			<rules></rules>
 		</group>
 		<group>
 			<name>Marksmen</name>
@@ -54,7 +70,7 @@
 			<size>5</size>
 			<cost>25</cost>
 			<race>human</race>
-			<talent>true</talent>
+			<rules></rules>
 		</group>
 		<group>
 			<name>Swordsmen</name>
@@ -64,7 +80,7 @@
 			<size>5</size>
 			<cost>35</cost>
 			<race>human</race>
-			<talent>true</talent>
+			<rules></rules>
 		</group>
 	</henchmen>
 </warband>

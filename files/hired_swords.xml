@@ -1,0 +1,16 @@
+<blabla>
+	<hired_swords>
+		<character>
+			<name></name>
+			<equipment></equipment>
+			<stats></stats>
+			<skills></skills>
+			<race></race>
+			<cost></cost>
+			<upkeep></upkeep>
+			<rules></rules>
+		</character>
+	</hired_swords>
+	<dramatis_personae>
+	</dramatis_personae>
+</blabla>

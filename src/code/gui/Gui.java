@@ -1,11 +1,8 @@
 package code.gui;
 
 import java.awt.GridLayout;
-
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-
-import code.Program;
 
 public class Gui extends JPanel {
 	private static final long serialVersionUID = -1870754393643021461L;

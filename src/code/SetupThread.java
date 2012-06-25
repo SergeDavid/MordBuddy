@@ -1,5 +1,7 @@
 package code;
 
+import code.xml.unpackWarbands;
+
 public class SetupThread extends Thread {
 	public SetupThread() {
 		super("unpacks required xml files.");
@@ -7,9 +9,8 @@ public class SetupThread extends Thread {
 	}
 	@Override
 	public void run() {
-		System.out.println("Giggity");
 		Program.xml.unpackUniversal();//create the master lists
-		Program.xml.unpackAllWarbands();//Grab the list of warband names "files/warband_[name].xml"
+		new unpackWarbands();//Grab the list of warband names "files/warband_[name].xml"
 		Program.xmlReady = true;
 		System.out.println("Setup thread is done.");
 	}
