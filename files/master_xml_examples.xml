@@ -5,11 +5,10 @@
 	<general>
 		<name></name><!-- warband name -->
 		<gold></gold><!-- starting gold -->
+		<minsize></minsize><!-- minimum models allowed in the warband -->
 		<size></size><!-- total models that can be used by the warband at once (not including hired swords and dramatis) -->
 		<rules></rules><!-- rules governing the warband such as anamosity -->
-		<equipment></equipment><!-- The lists of equipment the different groups can take, might change this to each members profile and green the options on there lists -->
 		<skills></skills><!-- a list of true/false determining what they can or can't take. (combat,shooting,academic,strength,speed,special) -->
-		<magic></magic><!-- Warband specific magic that can be taken, will probably move this to universal and place <magic> in heroes/hired/dramatis with the names of the spells they can take-->
 		<hired></hired><!-- The list of hired swords the warband can take based on names. (absolute spelling is required) -->
 	</general>
 	<heroes>
@@ -21,6 +20,8 @@
 			<max></max><!-- maximum you can take -->
 			<cost></cost>
 			<race></race><!-- used to compare with max stats for that race -->
+			<magic></magic><!-- list of magic names the character can take -->
+			<equipment></equipment><!-- A description of what equipment the character can take -->
 			<rules></rules><!-- special rules about each character, like reikland having +6 leader range -->
 		</hero>
 	</heroes>
@@ -33,6 +34,7 @@
 			<size></size><!-- total members that can be taken for each group -->
 			<cost></cost>
 			<race></race>
+			<equipment></equipment><!-- A description of what equipment the character can take -->
 			<rules></rules><!-- Rules  -->
 		</group>
 	</henchmen>

@@ -1,6 +1,8 @@
 package code.gui.panels;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -12,6 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import code.Program;
+import code.xml.saveWarband;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class GeneralPanel extends JPanel {
 	private static final long serialVersionUID = -7099283888689089508L;
@@ -26,6 +31,13 @@ public class GeneralPanel extends JPanel {
 		//Name
 		JLabel lblWarbandName = new JLabel("Warband Name : ");
 		name = new JTextField();
+		name.addInputMethodListener(new InputMethodListener() {
+			public void inputMethodTextChanged(InputMethodEvent arg0) {
+				Program.warband.name = name.getText();
+				System.out.println(Program.warband.name);
+			}
+			public void caretPositionChanged(InputMethodEvent event) {}
+		});
 		name.setText(Program.warband.name);
 		name.setColumns(10);
 		
@@ -65,6 +77,12 @@ public class GeneralPanel extends JPanel {
 		//Buttons
 		JButton btnSave = new JButton("Save");
 		btnSave.setBackground(Color.GREEN);
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Started to save the warband");//TODO println
+				new saveWarband();
+			}
+		});
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.setBackground(Color.RED);
 		JButton btnExploration = new JButton("Exploration");

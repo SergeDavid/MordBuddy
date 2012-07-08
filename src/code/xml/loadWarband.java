@@ -14,9 +14,8 @@ import code.Warband;
 import code.XmlHandler;
 import code.gui.Gui;
 
-public class loadWarband {
+public class loadWarband extends XmlHandler {
 	Warband band;
-	XmlHandler xml = new XmlHandler();
 	
 	/**Called to load a saved warband from rosters into the program.*/
 	public loadWarband(String name) {
@@ -50,13 +49,13 @@ public class loadWarband {
 			Node nNode = list.item(temp);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
-				band.name = xml.getString("name", eElement);
-				band.type = xml.getString("type", eElement);
-				band.wardstones = xml.getInt("wardstones", eElement);
-				band.upkeep = xml.getInt("upkeep", eElement);
-				band.members = xml.getInt("members", eElement);
-				band.battles = xml.getInt("battles", eElement);
-				band.rating = xml.getInt("rating", eElement);
+				band.name = getString("name", eElement);
+				band.type = getString("type", eElement);
+				band.wardstones = getInt("wardstones", eElement);
+				band.upkeep = getInt("upkeep", eElement);
+				band.members = getInt("members", eElement);
+				band.battles = getInt("battles", eElement);
+				band.rating = getInt("rating", eElement);
 			}
 		}
 	}
@@ -69,11 +68,11 @@ public class loadWarband {
 				if (n.getNodeType() == Node.ELEMENT_NODE) {//Applies hero data to your hero.
 					Element e = (Element) n;
 					Heroes hero = new Heroes();
-					hero.name = xml.getString("name",e);
-					hero.type = xml.getString("type",e);
-					hero.setStats(xml.getArray("stats",10,e));
-					hero.skills = xml.getString("skills",e);
-					hero.equipment = xml.getString("equipment",e);
+					hero.name = getString("name",e);
+					hero.type = getString("type",e);
+					hero.setStats(getArray("stats",10,e));
+					hero.skills = getString("skills",e);
+					hero.equipment = getString("equipment",e);
 					band.heroes[ass] = hero;
 				}
 			}
@@ -88,12 +87,12 @@ public class loadWarband {
 				if (n.getNodeType() == Node.ELEMENT_NODE) {//Applies henchmen data to your henchmen.
 					Element e = (Element) n;
 					Henchmen hench = new Henchmen();
-					hench.name = xml.getString("name",e);
-					hench.type = xml.getString("type",e);
-					hench.members = xml.getInt("members",e);
-					hench.setStats(xml.getArray("stats",10,e));
-					hench.skills = xml.getString("skills",e);
-					hench.equipment = xml.getString("equipment",e);
+					hench.name = getString("name",e);
+					hench.type = getString("type",e);
+					hench.members = getInt("members",e);
+					hench.setStats(getArray("stats",10,e));
+					hench.skills = getString("skills",e);
+					hench.equipment = getString("equipment",e);
 					band.henchmen[ass] = hench;
 				}
 			}

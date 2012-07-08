@@ -63,4 +63,17 @@ public class Character {
 		leadership = Integer.parseInt(s[8]);
 		experience = Integer.parseInt(s[9]);
 	}
+	public String getStats() {
+		return 
+			movement+","+
+			weaponSkill+","+
+			balisticSkill+","+
+			strength+","+
+			toughness+","+
+			wounds+","+
+			inititive+","+
+			attacks+","+
+			leadership+","+
+			experience;
+	}
 }
