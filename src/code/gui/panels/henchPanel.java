@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import code.Henchmen;
 import code.Program;
 
-public class henchPanel extends JPanel {
+public class HenchPanel extends JPanel {
 	private static final long serialVersionUID = 4127661315485367563L;
 	public JTextField hero1_name;
 	public JTextField type;
@@ -32,7 +32,7 @@ public class henchPanel extends JPanel {
 	private JTextField textField;
 	private JButton btnAddGuy;
 	
-	public henchPanel(int id_num) {
+	public HenchPanel(int id_num) {
 		Henchmen hench = Program.warband.henchmen[id_num];
 		//name
 		JLabel hero1_label1 = new JLabel("Name");

@@ -7,8 +7,8 @@ import code.gui.Gui;
 
 public class Program extends JFrame {
 	private static final long serialVersionUID = 2157888685830593633L;
-	private static final String name = "Mordheim Buddy";
-	private static final String version = "0.02";
+	public static final String name = "Mordheim Buddy";
+	public static final String version = "0.03";
 	
 	//functions
 	public static Gui gui;
@@ -18,7 +18,6 @@ public class Program extends JFrame {
 	//SetupThread is just implimented once on start up.
 	
 	//Master Lists
-	public static ArrayList<Warband> bands = new ArrayList<Warband>();
 	public static ArrayList<Modifiers> skills = new ArrayList<Modifiers>();
 	public static ArrayList<Equipment> equipment = new ArrayList<Equipment>();
 	public static ArrayList<Modifiers> magic = new ArrayList<Modifiers>();
@@ -26,6 +25,7 @@ public class Program extends JFrame {
 	
 	//working list
 	public static Warband warband;
+	public static Warband baseWarband;//This is what the current warband is ran off of.
 
 	public Program() {
 		super(name + "   v" + version);
@@ -34,35 +34,61 @@ public class Program extends JFrame {
 	    setUndecorated(false);
 		setResizable(true);
 	    setLocationRelativeTo(null);
-	    setVisible(true);
 	    
 	    //load needed elements
 	    xml = new XmlHandler();
 	    new SetupThread();
 	    gui = new Gui();
 	    getContentPane().add(gui);
+	    setVisible(true);
 	}
 	
 	public static void main(String[] args) {
 		new Program();
 	}
 
-	/**loads an empty warband and changes the gui*/
-	public static void newWarband() {
-		warband = new Warband();
-		//TODO: set default warband reference
-		//TODO: modify the warband bases on special modifiers from the default (base gold, type, etc)
-		gui.change(Gui.pane.main);
+	public static void newWarband(String s) {
+		new code.xml.CreateWarband(s);
 	}
-	public static void loadWarband() {
-		new code.xml.loadWarband("my_reikan");
+	public static void loadWarband(String s) {
+		new code.xml.LoadWarband(s);
 	}
 
-	public static String[] warbandNames() {
-		String[] a = new String[bands.size()];
-		for (int i = 0; i < bands.size() ; i++) {
-			a[i] = bands.get(i).name;
+	public static String[] addHeroList() {
+		String[] s = new String[baseWarband.totalHeroes];
+		for (int i = 0; i < baseWarband.totalHeroes; i++) {
+			s[i] = baseWarband.heroes[i].name + " : " + baseWarband.heroes[i].cost + " GC's   (" + baseWarband.heroes[i].min + " min / " + baseWarband.heroes[i].max + " max)";
 		}
-		return a;
+		return s;
+	}
+	public static String[] addHenchmenList() {
+		String[] s = new String[baseWarband.totalGroups];
+		for (int i = 0; i < baseWarband.totalGroups; i++) {
+			s[i] = baseWarband.henchmen[i].name + " : " + baseWarband.henchmen[i].cost + " GC's   (" + baseWarband.henchmen[i].min + " min / " + baseWarband.henchmen[i].max + " max)";
+		}
+		return s;
+	}
+
+	public static void addHero(int i, boolean buy) {
+		warband.heroes[warband.totalHeroes] = baseWarband.heroes[i].copy();
+		if (buy) {warband.goldcrowns-=baseWarband.heroes[i].cost;}
+		warband.totalHeroes++;
+		gui.depth(1,warband.totalHeroes-1);
+	}
+
+	public static void addHenchmen(int i, boolean buy) {
+		warband.henchmen[warband.totalGroups] = baseWarband.henchmen[i].copy();
+		if (buy) {warband.goldcrowns-=baseWarband.henchmen[i].cost;}
+		warband.totalGroups++;
+		gui.depth(2,warband.totalGroups-1);
+	}
+
+	/**Takes the important settings from the base warband information and ports it over to the new warband.*/
+	public static void setupNewWarband() {
+		warband = new Warband();
+		warband.goldcrowns = baseWarband.goldcrowns;
+		warband.name = baseWarband.name;
+		warband.type = baseWarband.name;
+		warband.inventory = baseWarband.rules;
 	}
 }

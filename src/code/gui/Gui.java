@@ -14,17 +14,22 @@ public class Gui extends JPanel {
 	}
 	
 	public void change(pane s) {
-		if (s == pane.start) {set(new startPage());}
-		else if (s == pane.create) {set(new createPage());}
-		else if (s == pane.load) {set(new loadPage());}
-		else if (s == pane.main) {set(new mainPage());}
-		else {set(new mainPage());}
-		validate();
+		if (s == pane.start) {set(new TitlePage());}
+		else if (s == pane.create) {set(new CreatePage());}
+		else if (s == pane.load) {set(new LoadPage());}
+		else if (s == pane.main) {set(new MainPage());}
+		//else if (s == pane.update) {set(new mainPage());}
+		else {set(new MainPage());}
 	}
 	
 	private void set(JComponent jp) {
 		removeAll();
 		add(jp);
+		validate();
+	}
+
+	public void depth(int i, int j) {
+		set(new MainPage(i,j));
 	}
 
 }

@@ -1,7 +1,5 @@
 package code;
 
-import code.xml.unpackWarbands;
-
 public class SetupThread extends Thread {
 	public SetupThread() {
 		super("unpacks required xml files.");
@@ -10,7 +8,12 @@ public class SetupThread extends Thread {
 	@Override
 	public void run() {
 		Program.xml.unpackUniversal();//create the master lists
-		new unpackWarbands();//Grab the list of warband names "files/warband_[name].xml"
+		//TODO: Going to change this probably to something like 
+		//unpackSpecies();//Max stats mostly
+		//unpackEquipment();//All close combat, ranged, and misc equipment
+		//unpackSkills();//All of the available skills
+		//unpackInjuries();//All possible injury results
+		//unpackMagic();//All magic across all of the different warbands
 		Program.xmlReady = true;
 		System.out.println("Setup thread is done.");
 	}

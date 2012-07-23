@@ -6,17 +6,23 @@ import java.io.FileWriter;
 import code.Henchmen;
 import code.Heroes;
 import code.Program;
+import code.Warband;
 
-public class saveWarband {
+/**Takes all of the information inside the different gui elements and saves them to an xml file for later use.*/
+public class SaveWarband {
+	Warband band;
 	/**Saves your warband into an xml file*/
-	public saveWarband() {
+	public SaveWarband() {
 		//If the folder doesn't exist, create it so we can save our save files inside it.
 		File directory = new File("rosters/");
 		if (!directory.exists()) {if (directory.mkdir()) {System.out.println("created directory");} else {return;}}
 		
 		//Saves the game in a property file (since it is easy)
 		try {
-			FileWriter fstream = new FileWriter("rosters/" + Program.warband.name + ".xml");
+			band = Program.warband;
+			if (band.savedName == "" || band.savedName == null) {band.savedName = band.name;}
+			if (band.name == null) {band.savedName = "my_"+band.type;}
+			FileWriter fstream = new FileWriter("rosters/" + band.savedName + ".xml");
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.write("<warband>\n" + packWarbandGeneral() + packWarbandHeroes() + packWarbandHenchmen() + "</warband>");
 			out.close();
@@ -40,6 +46,7 @@ public class saveWarband {
 		String txt = "	<heroes>\n";
 		for (Heroes hero : Program.warband.heroes) {
 			if (hero == null) continue;
+			System.out.println("hero equipment"+hero.equipment);
 			txt +=
 			"		<hero>\n"+
 			"			<name>"+hero.name+"</name>\n"+

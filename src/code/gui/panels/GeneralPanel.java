@@ -14,7 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import code.Program;
-import code.xml.saveWarband;
+import code.gui.Gui;
+import code.gui.MainPage;
+import code.xml.SaveWarband;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 
@@ -26,8 +28,20 @@ public class GeneralPanel extends JPanel {
 	private JTextField upkeep;
 	private JTextField wardstones;
 	private JTextField rating;
+	private JTextArea textArea;
+	private MainPage main;
 	
-	public GeneralPanel() {
+	public void updateWarband() {
+		Program.warband.name = name.getText();
+		Program.warband.goldcrowns = Integer.parseInt(goldcrowns.getText());
+		Program.warband.upkeep = Integer.parseInt(upkeep.getText());
+		Program.warband.wardstones = Integer.parseInt(wardstones.getText());
+		Program.warband.rating = Integer.parseInt(rating.getText());
+		Program.warband.inventory = textArea.getText();
+	}
+	
+	public GeneralPanel(MainPage t) {
+		main = t;
 		//Name
 		JLabel lblWarbandName = new JLabel("Warband Name : ");
 		name = new JTextField();
@@ -71,7 +85,7 @@ public class GeneralPanel extends JPanel {
 		
 		//Equipment
 		JLabel lblStoredEquipment = new JLabel("Stored Equipment");
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setRows(9);
 		
 		//Buttons
@@ -80,10 +94,18 @@ public class GeneralPanel extends JPanel {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Started to save the warband");//TODO println
-				new saveWarband();
+				main.updateAllTheStuff();
+				new SaveWarband();
 			}
 		});
 		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {//TODO: Add in a popup instead of directly quitting.
+				Program.baseWarband = null;
+				Program.warband = null;
+				Program.gui.change(Gui.pane.start);
+			}
+		});
 		btnQuit.setBackground(Color.RED);
 		JButton btnExploration = new JButton("Exploration");
 		JButton btnAddEquipment = new JButton("Add Equipment");		

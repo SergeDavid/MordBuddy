@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import code.Heroes;
 import code.Program;
 
-public class heroPanel extends JPanel {
+public class HeroPanel extends JPanel {
 	private static final long serialVersionUID = 2358897848081414642L;
 	
 	//Special stuff
@@ -27,8 +27,8 @@ public class heroPanel extends JPanel {
 	
 	//Modifiable
 	public JTextField name;
-	private JTextArea txtrAxeHelmetSword;
-	private JTextArea txtrTrickShotStep;
+	private JTextArea txtEquipment;
+	private JTextArea txtSkills;
 	
 	//non-editable
 	public JTextField type;
@@ -47,7 +47,25 @@ public class heroPanel extends JPanel {
 	private JLabel label1;//name
 	private JLabel label2;//type
 	
-	public heroPanel(int id_num) {
+	public void updateWarband(int i) {
+		Program.warband.heroes[i].name = name.getText();
+		Program.warband.heroes[i].equipment = txtEquipment.getText();
+		Program.warband.heroes[i].skills = txtSkills.getText();;
+		Program.warband.heroes[i].movement = getStat(0);
+		Program.warband.heroes[i].weaponSkill = getStat(1);
+		Program.warband.heroes[i].balisticSkill = getStat(2);
+		Program.warband.heroes[i].strength = getStat(3);
+		Program.warband.heroes[i].toughness = getStat(4);
+		Program.warband.heroes[i].wounds = getStat(5);
+		Program.warband.heroes[i].inititive = getStat(6);
+		Program.warband.heroes[i].attacks = getStat(7);
+		Program.warband.heroes[i].leadership = getStat(8);
+	}
+	private int getStat(int i) {
+		return (Integer) hero1_stats.getModel().getValueAt(1, i);
+	}
+	
+	public HeroPanel(int id_num) {
 		hero = Program.warband.heroes[id_num];
 		//name
 		label1 = new JLabel("Name");
@@ -97,15 +115,15 @@ public class heroPanel extends JPanel {
 		
 		//Equipment
 		lblEquipment = new JLabel("Equipment");
-		txtrAxeHelmetSword = new JTextArea();
-		txtrAxeHelmetSword.setRows(4);
-		txtrAxeHelmetSword.setText(hero.equipment);
+		txtEquipment = new JTextArea();
+		txtEquipment.setRows(4);
+		txtEquipment.setText(hero.equipment);
 		
 		//Skills
 		lblSkillsAnd = new JLabel("Skills, Injuries, Etc");
-		txtrTrickShotStep = new JTextArea();
-		txtrTrickShotStep.setRows(3);
-		txtrTrickShotStep.setText(hero.skills);
+		txtSkills = new JTextArea();
+		txtSkills.setRows(3);
+		txtSkills.setText(hero.skills);
 		setListeners();
 		setLayout();
 	}
@@ -118,7 +136,7 @@ public class heroPanel extends JPanel {
 		});
 		btnKill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (hero.experience < hero.maxEXP) {
+				if (hero.experience < hero.maxExp) {
 					/* if (inarray(hero.experience, explevels)) {//TODO
 					 * 	   lblLevelsGained.setText("levels gained : " + (++hero.levels));
 					 * }
@@ -179,10 +197,10 @@ public class heroPanel extends JPanel {
 										.addComponent(lblEquipment)
 										.addGroup(gl_hero1.createSequentialGroup()
 											.addGap(10)
-											.addComponent(txtrTrickShotStep, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))))
+											.addComponent(txtSkills, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))))
 								.addGroup(gl_hero1.createSequentialGroup()
 									.addGap(14)
-									.addComponent(txtrAxeHelmetSword, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
+									.addComponent(txtEquipment, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
 								.addComponent(lblSkillsAnd))))
 					.addContainerGap())
 		);
@@ -214,14 +232,14 @@ public class heroPanel extends JPanel {
 						.addGroup(gl_hero1.createSequentialGroup()
 							.addComponent(lblEquipment)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtrAxeHelmetSword)))
+							.addComponent(txtEquipment)))
 					.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
 					.addGroup(gl_hero1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnKnockedOut, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_hero1.createSequentialGroup()
 							.addComponent(lblSkillsAnd)
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(txtrTrickShotStep, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(txtSkills, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
 					.addGap(119))
 		);
 		this.setLayout(gl_hero1);

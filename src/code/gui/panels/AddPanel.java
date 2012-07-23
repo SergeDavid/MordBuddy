@@ -7,19 +7,37 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JTabbedPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import code.Program;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class AddPanel extends JPanel {
-	public AddPanel() {
+
+		String group;
+		JLabel lblSelectWhatKind;
+		JComboBox comboBox;
+		JLabel lblGoldCrowns;
+		JTabbedPane main;
 		
-		JLabel lblSelectWhatKind = new JLabel("Select what kind you want");
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Warriors 35GC", "Marksmen 35GC", "Swordsmen 35GC"}));
-		
-		JLabel lblGoldCrowns = new JLabel("Gold Crowns : 500");
+	public AddPanel(String type, String[] s) {
+		lblSelectWhatKind = new JLabel("Select what kind you want");
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(s));
+		group = type;
+		lblGoldCrowns = new JLabel("Gold Crowns : " + Program.warband.goldcrowns);
 		
 		JButton btnHire = new JButton("Hire");
+		btnHire.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				if (group == "heroes") {Program.addHero(comboBox.getSelectedIndex(), true);}
+				else if (group == "henchmen") {Program.addHenchmen(comboBox.getSelectedIndex(), true);}
+				else {Program.addHenchmen(comboBox.getSelectedIndex(), true);}
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

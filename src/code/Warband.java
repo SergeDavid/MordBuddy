@@ -1,23 +1,29 @@
 package code;
 
 public class Warband {
-	//Warbands are saved in groups by game so (<0>blablabla</0><1>after first battle</1><2>after second battle</2>)
-	
+	//The different lists of characters you can have or currently have.
 	public Heroes[] heroes = new Heroes[6];//Your 6 total heroes
-	public Heroes[] deadheroes;//A list of discarded heroes to be trashed when the program closes or the next battle is called
 	public Henchmen[] henchmen = new Henchmen[6];//Your 6 total henchmen groups
-	public Henchmen[] deadhenchmen;//Same as deadHeroes
-	public Character[] hiredsword;
+	public int totalHeroes;//How many heroes are there total
+	public int totalGroups;
+	public String inventory;//Warband unequipped equipment.
 	
-	public String name = "my_warband";
-	public String type = "Mercenary";
-	public int goldcrowns = 500;
-	public int wardstones = 0;
-	public int upkeep = 0;
-	public int miscupkeep = 0;//Misc upkeep from special things like campaign hideout or what not
-	public int battles = 0;
-	public int members = 0;
-	public int rating = 0;
+	//General information
+	public String name;
+	public String type;//The name of the base warband files/warband_[type].xml
+	public int goldcrowns;
 	
-	public Equipment[] inventory;
+	//For saved warbands
+	public int wardstones;
+	public int upkeep;//manditory goldcrowns you need to pay for each game from hiredswords (and anything else) cost.
+	public int battles;
+	public int members;
+	public int rating;
+	public String savedName;
+	
+	//For base warbands
+	public int membersMax;//maximum heroes and henchmen you can take at once.
+	public int membersMin;//minimum heroes and henchmen you can take at once.
+	public String skills;//warband specific skills TODO: Not sure what to do with this... Maybe something like Universal.skills.allSpecial -> Universal.skills.special;
+	public String rules;//Warband rules such as animosity.
 }

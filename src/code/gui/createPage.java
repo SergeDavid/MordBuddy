@@ -10,34 +10,30 @@ import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import code.Program;
+import code.xml.GrabNames;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class createPage extends JPanel {
+/**This is the gui page where you can select which warband to use as your base to start a new warband with.*/
+public class CreatePage extends JPanel {
 	private static final long serialVersionUID = 6623864777126977113L;
-	public createPage() {
+	JList list;
+	JLabel lblChooseAWarband;
+	JButton btnReturn;
+	JButton btnStartWarband;
+	
+	public CreatePage() {
 		setBackground(Color.GRAY);
 		
-		JButton btnReturn = new JButton("Return");
-		btnReturn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Program.gui.change(Gui.pane.start);
-			}
-		});
+		lblChooseAWarband = new JLabel("Choose A Warband");
+		btnReturn = new JButton("Return");
+		btnStartWarband = new JButton("Start Warband");
 		
-		JButton btnStartWarband = new JButton("Start Warband");
-		btnStartWarband.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Program.newWarband();
-			}
-		});
-		
-		JLabel lblChooseAWarband = new JLabel("Choose A Warband");
-		
-		JList list = new JList();
+		list = new JList();
 		list.setModel(new AbstractListModel() {
 			private static final long serialVersionUID = -8277547429892260268L;
-			String[] values = Program.warbandNames();
+			String[] values = GrabNames.newWarbands();
 			public int getSize() {
 				return values.length;
 			}
@@ -45,6 +41,12 @@ public class createPage extends JPanel {
 				return values[index];
 			}
 		});
+		
+		setListeners();
+		createLayout();
+	}
+
+	private void createLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -78,5 +80,23 @@ public class createPage extends JPanel {
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
+	}
+
+	private void setListeners() {
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Program.gui.change(Gui.pane.start);
+			}
+		});
+		btnStartWarband.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (list.getSelectedValue() != null) {
+					Program.newWarband(list.getSelectedValue().toString());
+				}
+				else {
+					Program.gui.change(Gui.pane.start);
+				}
+			}
+		});
 	}
 }

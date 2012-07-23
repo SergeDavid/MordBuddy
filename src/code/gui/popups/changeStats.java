@@ -8,6 +8,7 @@ import java.awt.Insets;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+/**Eventually this will become the pop up (probably in another frame that will disappear when it loses focus) that will let you change the stats of your character while also showing their racial max.*/
 public class changeStats extends JInternalFrame {
 	public changeStats(String string) {
 		setTitle("Change Stats");

@@ -11,17 +11,19 @@ import javax.swing.JButton;
 import code.Program;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
-public class startPage extends JPanel {
+public class TitlePage extends JPanel {
 	private static final long serialVersionUID = -3333988765044700564L;
 	private JTextArea infoBox;
 
-	public startPage() {
+	public TitlePage() {
+		setBackground(Color.GRAY);
 		
 		JLabel lblMordbuddy = new JLabel("MordBuddy");
 		lblMordbuddy.setFont(new Font("Tahoma", Font.PLAIN, 60));
 		
-		JLabel lblVersion = new JLabel("version 0.02");
+		JLabel lblVersion = new JLabel("version " + Program.version);
 		
 		JLabel lblBySergedavid = new JLabel("By: Serge-David");
 		
