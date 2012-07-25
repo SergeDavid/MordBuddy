@@ -74,7 +74,7 @@ public class LoadWarband extends XmlHandler {
 					Heroes hero = new Heroes();
 					hero.name = getString("name",e);
 					hero.type = getString("type",e);
-					hero.setStats(getArray("stats",10,e));
+					hero.setStats(getArray("stats",11,e));
 					hero.skills = getString("skills",e);
 					hero.equipment = getString("equipment",e);
 					band.heroes[ass] = hero;
@@ -95,7 +95,7 @@ public class LoadWarband extends XmlHandler {
 					hench.name = getString("name",e);
 					hench.type = getString("type",e);
 					hench.members = getInt("members",e);
-					hench.setStats(getArray("stats",10,e));
+					hench.setStats(getArray("stats",11,e));
 					hench.skills = getString("skills",e);
 					hench.equipment = getString("equipment",e);
 					band.henchmen[ass] = hench;

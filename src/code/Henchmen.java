@@ -23,7 +23,6 @@ public class Henchmen extends Character {
 		h.inititive = inititive;
 		h.attacks = attacks;
 		h.leadership = leadership;
-		h.experience = experience;
 		h.exp = exp;
 		h.exp2 = exp2;
 		h.equipment = equipment;

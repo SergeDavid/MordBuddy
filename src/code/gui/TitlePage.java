@@ -49,7 +49,7 @@ public class TitlePage extends JPanel {
 		infoBox.setWrapStyleWord(true);
 		infoBox.setRows(8);
 		infoBox.setLineWrap(true);
-		infoBox.setText("This program is specifically for private use along with a copy of the rules. I created this program for easier management of my warband since I can change my skills, stats, and model count much easier then with a pencil. If you found this program online and it was not hosted by GitHub by Serge-David then someone else is distributing it without my consent. This program is only allowed to be hosted on GitHub by me as an open source version control and backup system. Thank you for using MordBuddy, hope you enjoy it.");
+		infoBox.setText("This program is specifically for private use, it is not a substitute for the rulebook but instead as a suppliment like the warband sheets. I created this program for easier management of my personal warbands since I can change my characters skills, stats, and model count much easier then with a pencil. If you found this program online and it was not hosted on GitHub by Serge-David then someone is distributing it without my consent. This program is only allowed to be hosted on GitHub by me for private version control and backup system. Thank you for using MordBuddy, hope you enjoy it.");
 		infoBox.setEditable(false);
 		//infoBox.setLineWrap(true);
 		infoBox.setColumns(10);

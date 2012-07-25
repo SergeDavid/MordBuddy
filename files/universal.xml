@@ -12,15 +12,10 @@
 		<ghoul>5,5,2,4,5,3,5,5,7</ghoul>
 		<orcs>4,6,6,4,5,3,5,4,9</orcs>
 	</maxStats>
-	<experience>
-		<henchexp>14</henchexp>
-		<heroexp>90</heroexp>
-	</experience>
 	<equipment>
 		<!-- availability 0 = common, 1~12 = rare roll you have to match -->
 		<close_combat>
 			<axe>
-				<type>combat</type>
 				<cost>5</cost>
 				<rules>+2 str</rules>
 				<available>0</available>
@@ -70,6 +65,25 @@
 		</ranged>
 		<blackpowder>
 		</blackpowder>
+		<armour>
+			<shield>
+			</shield>
+			<buckler>
+			</buckler>
+			<helmet>
+			</helmet>
+			<light_armour>
+			</light_armour>
+			<heavy_armour>
+			</heavy_armour>
+		</armour>
+		<misc>
+			<hunting_arrows>
+				<cost>10</cost>
+				<rules>+1 on injury</rules>
+				<available>6</available>
+			</hunting_arrows>
+		</misc>
 	</equipment>
 	<magic>
 	</magic>
@@ -104,30 +118,28 @@
 			<dead> 
 				<min>11</min>
 				<max>15</max>
-				<rule>The warrior is dead and his body is abandoned in the
-dark alleys of Mordheim, never to be found again. All
-the weapons and equipment he carried are lost. 
-Remove him from the warband’s roster.</rule>
 			</dead>
-<!-- derp derp
-<multiple_injuries min=16 max=21 rule="The warrior is not dead but has suffered a lot of
-wounds. Roll D6 times on this table. Re-roll any
-‘Dead’, ‘Captured’ and further ‘Multiple Injuries’
-results."></multiple_injuries>
-<leg_wound min=22 max=22 rule="The warrior’s leg is broken. He suffers a -1 Movement
-characteristic penalty from now on."></leg_wound>
-<arm_wound min=23 max=23 rule="Roll again: 1 = Severe arm wound. The arm must be
-amputated. The warrior may only use a single onehanded
-weapon from now on. 2-6 = Light wound.
-The warrior must miss the next game."></arm_wound>
-<madness min=24 max=24 rule="
-Roll a D6. On a 1-3 the warrior suffers from stupidity;
-on 4-6 the warrior suffers from frenzy from now on
-(see the Psychology section for details)."></madness>
-<shashed_leg min=25 max=25 rule="
-Roll again: 1 = The warrior may not run any more but
-he may still charge. 2-6 = The warrior misses the next
-game."></shashed_leg>
+		<multiple_injuries> 
+			<min>16</min>
+			<max>21</max>
+		</multiple_injuries>
+		<leg_wound>
+			<min>22</min>
+			<max>22</max>
+		</leg_wound>
+		<arm_wound>
+			<min>23</min>
+			<max>23</max>
+		</arm_wound>
+		<madness>
+			<min>24</min>
+			<max>24</max>
+		</madness>
+		<shashed_leg>
+			<min>25</min>
+			<max>25</max>
+		</shashed_leg>
+<!--
 <chest_wound min=26 max=26 rule="
 The warrior has been badly wounded in the chest. He
 recovers but is weakened by the injury so his

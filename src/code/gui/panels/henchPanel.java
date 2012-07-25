@@ -52,7 +52,7 @@ public class HenchPanel extends JPanel {
 		hero1_stats.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"M", "WS", "BS", "S", "T", "W", "I", "A", "Ld", "Exp"},
-				{hench.movement, hench.weaponSkill, hench.balisticSkill, hench.strength, hench.toughness, hench.wounds, hench.inititive, hench.attacks, hench.leadership, hench.experience},
+				{hench.movement, hench.weaponSkill, hench.balisticSkill, hench.strength, hench.toughness, hench.wounds, hench.inititive, hench.attacks, hench.leadership, hench.exp},
 			},
 			new String[] {
 				"movement", "weaponSkill", "ballisticSkill", "strength", "toughness", "wounds", "inititive", "attacks", "leadership", "experience"
@@ -196,4 +196,6 @@ public class HenchPanel extends JPanel {
 		);
 		this.setLayout(gl_hero1);
 	}
+	
+	
 }

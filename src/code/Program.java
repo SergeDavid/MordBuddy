@@ -8,7 +8,7 @@ import code.gui.Gui;
 public class Program extends JFrame {
 	private static final long serialVersionUID = 2157888685830593633L;
 	public static final String name = "Mordheim Buddy";
-	public static final String version = "0.03";
+	public static final String version = "0.04";
 	
 	//functions
 	public static Gui gui;
@@ -73,6 +73,7 @@ public class Program extends JFrame {
 		warband.heroes[warband.totalHeroes] = baseWarband.heroes[i].copy();
 		if (buy) {warband.goldcrowns-=baseWarband.heroes[i].cost;}
 		warband.totalHeroes++;
+		updateRating();
 		gui.depth(1,warband.totalHeroes-1);
 	}
 
@@ -80,7 +81,18 @@ public class Program extends JFrame {
 		warband.henchmen[warband.totalGroups] = baseWarband.henchmen[i].copy();
 		if (buy) {warband.goldcrowns-=baseWarband.henchmen[i].cost;}
 		warband.totalGroups++;
+		updateRating();
 		gui.depth(2,warband.totalGroups-1);
+	}
+	
+	private static void updateRating() {
+		int n = 0;
+		final int p = 5;
+		for (int i = 0; i < 6; i++) {
+			if (warband.heroes[i] != null) {n += p + warband.heroes[i].exp;}
+			if (warband.henchmen[i] != null) {n += p + warband.henchmen[i].exp;}
+		}
+		warband.rating = n;
 	}
 
 	/**Takes the important settings from the base warband information and ports it over to the new warband.*/

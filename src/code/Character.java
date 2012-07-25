@@ -14,7 +14,7 @@ public class Character {
 	public Race race = Race.human;
 	
 	enum Stats {M,WS,BS,S,T,W,I,A,Ld,EXP};
-	public int movement,weaponSkill,balisticSkill,strength,toughness,wounds,inititive,attacks,leadership,experience = 0;
+	public int movement,weaponSkill,balisticSkill,strength,toughness,wounds,inititive,attacks,leadership = 0;
 	public int exp;
 	public int exp2;//Second exp gauge showing how much exp you have gained since the last time you hit the battle button.
 	public final int maxExp = 14;
@@ -37,7 +37,7 @@ public class Character {
 		inititive = Integer.parseInt(s[6]);
 		attacks = Integer.parseInt(s[7]);
 		leadership = Integer.parseInt(s[8]);
-		experience = Integer.parseInt(s[9]);
+		exp = exp2 = Integer.parseInt(s[9]);
 	}
 	public String getStats() {
 		return 
@@ -50,6 +50,7 @@ public class Character {
 			inititive+","+
 			attacks+","+
 			leadership+","+
-			experience;
+			exp+","+
+			exp2;//TODO
 	}
 }
