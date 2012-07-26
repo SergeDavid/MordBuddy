@@ -1,13 +1,13 @@
 <warband>
 	<general>
-		<name>Reikland</name>
+		<name>Bobs Uncle</name>
 		<type>Reikland</type>
-		<gold>405</gold>
-		<wardstones>0</wardstones>
-		<battles>0</battles>
-		<upkeep>0</upkeep>
-		<members>0</members>
-		<rating>38</rating>
+		<gold>380</gold>
+		<wardstones>3</wardstones>
+		<battles>4</battles>
+		<upkeep>20</upkeep>
+		<members>7</members>
+		<rating>43</rating>
 	</general>
 	<heroes>
 		<hero>
@@ -20,11 +20,19 @@
 		<hero>
 			<name>George</name>
 			<type>Champion</type>
-			<stats>4,4,3,3,3,1,3,1,7,8,8</stats>
+			<stats>4,4,3,3,3,1,3,1,7,8,13</stats>
 			<skills></skills>
 			<equipment></equipment>
 		</hero>
 	</heroes>
 	<henchmen>
+		<group>
+			<name>Dude</name>
+			<type>Warriors</type>
+			<stats>4,3,3,3,3,1,3,1,7,0,6</stats>
+			<skills>is my car</skills>
+			<equipment>where</equipment>
+			<members>1</members>
+		</group>
 	</henchmen>
 </warband>

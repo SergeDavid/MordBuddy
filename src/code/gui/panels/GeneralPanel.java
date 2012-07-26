@@ -16,6 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import code.Program;
 import code.gui.Gui;
 import code.gui.MainPage;
+import code.gui.popups.PopupBase;
 import code.xml.SaveWarband;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
@@ -41,6 +42,7 @@ public class GeneralPanel extends JPanel {
 	}
 	
 	public GeneralPanel(MainPage t) {
+		setBackground(Color.LIGHT_GRAY);
 		main = t;
 		//Name
 		JLabel lblWarbandName = new JLabel("Warband Name : ");
@@ -48,7 +50,7 @@ public class GeneralPanel extends JPanel {
 		name.addInputMethodListener(new InputMethodListener() {
 			public void inputMethodTextChanged(InputMethodEvent arg0) {
 				Program.warband.name = name.getText();
-				System.out.println(Program.warband.name);
+				System.out.println(Program.warband.name);//TODO: println
 			}
 			public void caretPositionChanged(InputMethodEvent event) {}
 		});
@@ -58,6 +60,7 @@ public class GeneralPanel extends JPanel {
 		//Type
 		JLabel lblWarbandType = new JLabel("Warband Type : ");
 		type = new JTextField();
+		type.setEditable(false);
 		type.setText(Program.warband.type);
 		type.setColumns(10);
 		
@@ -108,8 +111,13 @@ public class GeneralPanel extends JPanel {
 		});
 		btnQuit.setBackground(Color.RED);
 		JButton btnExploration = new JButton("Exploration");
-		JButton btnAddEquipment = new JButton("Add Equipment");		
+		JButton btnAddEquipment = new JButton("Unused");		
 		JButton btnNewBattle = new JButton("New Battle");
+		btnNewBattle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new PopupBase();
+			}
+		});
 		
 		GroupLayout gl_generalpan = new GroupLayout(this);
 		gl_generalpan.setHorizontalGroup(

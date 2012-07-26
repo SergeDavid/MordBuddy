@@ -5,27 +5,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-public class HeroExpItem extends JPanel {
-	JPanel[] checkBox = new JPanel[90];
-	private int[] heroExp = new int[]{2,4,6,8,11,14,17,20,24,28,32,36,41,46,51,57,63,69,76,83,90};
+public class OtherExpItem extends JPanel {
+	JPanel[] checkBox = new JPanel[14];
+	private int[] heroExp = new int[]{2,5,9,14};
 	private static final long serialVersionUID = 1L;
 
-	public HeroExpItem(int oldExp, int newExp) {
-		setPreferredSize(new Dimension(390,48));
+	public OtherExpItem(int oldExp, int newExp) {
+		setPreferredSize(new Dimension(182,18));//2*14=28+14*11=182
 		setBackground(Color.DARK_GRAY);
 		
-		setLayout(new GridLayout(3, 90, 2, 2));
+		setLayout(new GridLayout(1, 14, 2, 2));
 		
-		for (int i = 0; i < 90; i++) {
+		for (int i = 0; i < 14; i++) {
 			checkBox[i] = new JPanel();
-			//checkBox[i].setMinimumSize(minimumSize)
-			checkBox[i].setMinimumSize(new Dimension(11,11));
+			//checkBox[i].setMinimumSize(new Dimension(11,11));
 			add(checkBox[i]);
 		}
 		colorize(oldExp,newExp);
 	}
 	public void colorize(int oldExp, int newExp) {
-		for (int i = 0; i < 90; i++) {
+		for (int i = 0; i < 14; i++) {
 			if (inArray(i+1, heroExp)) {
 				if (i <= oldExp-1) checkBox[i].setBackground(Color.ORANGE);
 				else if (i <= newExp-1) checkBox[i].setBackground(Color.GREEN);

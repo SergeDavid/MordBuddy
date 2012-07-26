@@ -13,7 +13,6 @@ public class Program extends JFrame {
 	//functions
 	public static Gui gui;
 	public static XmlHandler xml;
-	/**Set to true when the SetupThread is finished.*/
 	public static boolean xmlReady = false;
 	//SetupThread is just implimented once on start up.
 	
@@ -49,6 +48,8 @@ public class Program extends JFrame {
 
 	public static void newWarband(String s) {
 		new code.xml.CreateWarband(s);
+		setupNewWarband();
+		gui.change(Gui.pane.main);
 	}
 	public static void loadWarband(String s) {
 		new code.xml.LoadWarband(s);
@@ -73,6 +74,7 @@ public class Program extends JFrame {
 		warband.heroes[warband.totalHeroes] = baseWarband.heroes[i].copy();
 		if (buy) {warband.goldcrowns-=baseWarband.heroes[i].cost;}
 		warband.totalHeroes++;
+		warband.members++;
 		updateRating();
 		gui.depth(1,warband.totalHeroes-1);
 	}
@@ -81,6 +83,7 @@ public class Program extends JFrame {
 		warband.henchmen[warband.totalGroups] = baseWarband.henchmen[i].copy();
 		if (buy) {warband.goldcrowns-=baseWarband.henchmen[i].cost;}
 		warband.totalGroups++;
+		warband.members++;
 		updateRating();
 		gui.depth(2,warband.totalGroups-1);
 	}

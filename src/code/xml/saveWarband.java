@@ -22,7 +22,7 @@ public class SaveWarband {
 			band = Program.warband;
 			if (band.savedName == "" || band.savedName == null) {band.savedName = band.name;}
 			if (band.name == null) {band.savedName = "my_"+band.type;}
-			FileWriter fstream = new FileWriter("rosters/" + band.savedName + ".xml");
+			FileWriter fstream = new FileWriter("rosters/" + band.savedName + ".xml", false);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.write("<warband>\n" + packWarbandGeneral() + packWarbandHeroes() + packWarbandHenchmen() + "</warband>");
 			out.close();

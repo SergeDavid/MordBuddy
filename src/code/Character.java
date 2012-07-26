@@ -37,7 +37,8 @@ public class Character {
 		inititive = Integer.parseInt(s[6]);
 		attacks = Integer.parseInt(s[7]);
 		leadership = Integer.parseInt(s[8]);
-		exp = exp2 = Integer.parseInt(s[9]);
+		exp = Integer.parseInt(s[9]);
+		exp2 = Integer.parseInt(s[10]);
 	}
 	public String getStats() {
 		return 

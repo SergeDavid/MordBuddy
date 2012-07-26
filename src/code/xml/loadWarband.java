@@ -34,7 +34,7 @@ public class LoadWarband extends XmlHandler {
 			Document doc = dBuilder.parse(fXmlFile);
 			doc.getDocumentElement().normalize();
 			band = new Warband();
-			band.savedName = name;
+			band.savedName = name.substring(8,name.length()-4);
 			
 			unpackWarbandGeneral(doc.getElementsByTagName("general"));
 			unpackWarbandHeroes(doc.getElementsByTagName("heroes"), doc);
@@ -54,6 +54,7 @@ public class LoadWarband extends XmlHandler {
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
 				band.name = getString("name", eElement);
+				band.goldcrowns = getInt("gold", eElement);
 				band.type = getString("type", eElement);
 				band.wardstones = getInt("wardstones", eElement);
 				band.upkeep = getInt("upkeep", eElement);
@@ -78,6 +79,7 @@ public class LoadWarband extends XmlHandler {
 					hero.skills = getString("skills",e);
 					hero.equipment = getString("equipment",e);
 					band.heroes[ass] = hero;
+					band.members++;
 					band.totalHeroes++;
 				}
 			}
@@ -99,6 +101,7 @@ public class LoadWarband extends XmlHandler {
 					hench.skills = getString("skills",e);
 					hench.equipment = getString("equipment",e);
 					band.henchmen[ass] = hench;
+					band.members+=hench.members;
 					band.totalGroups++;
 				}
 			}

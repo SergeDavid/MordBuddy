@@ -11,13 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import code.Heroes;
 import code.Program;
 import code.gui.items.HeroExpItem;
+import code.gui.items.NameAndType;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class HeroPanel extends JPanel {
 	private static final long serialVersionUID = 2358897848081414642L;
@@ -25,14 +28,8 @@ public class HeroPanel extends JPanel {
 	//Special stuff
 	public boolean removed = false;
 	private Heroes hero;
-	
-	//Modifiable
-	public JTextField name;
 	private JTextArea txtEquipment;
 	private JTextArea txtSkills;
-	
-	//non-editable
-	public JTextField type;
 	private JLabel status;//Alive / Dead
 	public JTable hero1_stats;//Stats
 	
@@ -43,24 +40,22 @@ public class HeroPanel extends JPanel {
 	private JButton btnKill;//+1 exp
 	private JButton btnKnockedOut;//injury
 	private JButton btnRemove;//remove
-	private JLabel label1;//name
-	private JLabel label2;//type
 	private HeroExpItem lblExpbar;
+	public NameAndType basic;
 	
-	public void updateWarband(int i) {
-		System.out.println(name.getText() + " has been saved, i hope.");
-		Program.warband.heroes[i].name = name.getText();
-		Program.warband.heroes[i].equipment = txtEquipment.getText();
-		Program.warband.heroes[i].skills = txtSkills.getText();
-		Program.warband.heroes[i].movement = getStat(0);
-		Program.warband.heroes[i].weaponSkill = getStat(1);
-		Program.warband.heroes[i].balisticSkill = getStat(2);
-		Program.warband.heroes[i].strength = getStat(3);
-		Program.warband.heroes[i].toughness = getStat(4);
-		Program.warband.heroes[i].wounds = getStat(5);
-		Program.warband.heroes[i].inititive = getStat(6);
-		Program.warband.heroes[i].attacks = getStat(7);
-		Program.warband.heroes[i].leadership = getStat(8);
+	public void updateWarband() {
+		hero.name = basic.modelName.getText();
+		hero.equipment = txtEquipment.getText();
+		hero.skills = txtSkills.getText();
+		hero.movement = getStat(0);
+		hero.weaponSkill = getStat(1);
+		hero.balisticSkill = getStat(2);
+		hero.strength = getStat(3);
+		hero.toughness = getStat(4);
+		hero.wounds = getStat(5);
+		hero.inititive = getStat(6);
+		hero.attacks = getStat(7);
+		hero.leadership = getStat(8);
 	}
 	private int getStat(int i) {
 		return (Integer) hero1_stats.getModel().getValueAt(1, i);
@@ -69,18 +64,8 @@ public class HeroPanel extends JPanel {
 	public HeroPanel(int id_num) {
 		setBackground(Color.LIGHT_GRAY);
 		hero = Program.warband.heroes[id_num];
-		//name
-		label1 = new JLabel("Name");
-		name = new JTextField();
-		name.setText(hero.name);
-		name.setColumns(10);
+		basic = new NameAndType(hero.name, hero.type);
 		lblExpbar = new HeroExpItem(hero.exp, hero.exp2);
-		
-		//Type
-		label2 = new JLabel("Type");
-		type = new JTextField();
-		type.setText(hero.type);
-		type.setColumns(10);
 		
 		//Stats
 		hero1_stats = new JTable();
@@ -110,7 +95,7 @@ public class HeroPanel extends JPanel {
 		btnNewButton = new JButton("Advancement");
 		btnNewButton.setToolTipText("Roll on the Advancement Table");
 		btnNewButton.setBackground(Color.GREEN);
-		btnKill = new JButton("+1 Exp");
+		btnKill = new JButton("Image");
 		btnKnockedOut = new JButton("Injury Chart");
 		btnKnockedOut.setToolTipText("Roll on the Injury Table");
 		btnKnockedOut.setBackground(Color.ORANGE);
@@ -139,20 +124,27 @@ public class HeroPanel extends JPanel {
 	private void setListeners() {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				name.setText("I snuggle puppies");
+				basic.modelName.setText("I snuggle puppies");
 				//Advancement
 			}
 		});
-		btnKill.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		lblExpbar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
 				if (hero.exp2 < hero.maxExp) {
 					lblExpbar.colorize(hero.exp, ++hero.exp2);
 				}
 			}
 		});
+		btnKill.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				basic.modelName.setText("I snuggle puppies");
+				//Advancement
+			}
+		});
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				name.setText("Removed");
+				basic.modelName.setText("Removed");
 				status.setText("Disbanded");
 				//Removes the character (To the dead pile!)
 				//Program.warband.heroes[i] = null; //TODO: Shuffle the character into oblivion
@@ -173,8 +165,7 @@ public class HeroPanel extends JPanel {
 							.addGroup(gl_hero1.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnKill, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnKnockedOut, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnRemove))
+								.addComponent(btnKnockedOut, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_hero1.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_hero1.createSequentialGroup()
@@ -185,65 +176,48 @@ public class HeroPanel extends JPanel {
 								.addGroup(gl_hero1.createSequentialGroup()
 									.addGap(14)
 									.addComponent(txtEquipment, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_hero1.createSequentialGroup()
-							.addComponent(label1)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(name, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(hero1_stats, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_hero1.createSequentialGroup()
-							.addGroup(gl_hero1.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_hero1.createSequentialGroup()
-									.addComponent(label2)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(type, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_hero1.createSequentialGroup()
-									.addGap(10)
-									.addComponent(status)))
-							.addGap(18)
-							.addComponent(lblExpbar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(26, Short.MAX_VALUE))
+						.addGroup(gl_hero1.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(gl_hero1.createSequentialGroup()
+								.addComponent(status)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblExpbar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_hero1.createSequentialGroup()
+								.addComponent(basic, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addComponent(hero1_stats, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addComponent(btnRemove))))
+					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		gl_hero1.setVerticalGroup(
 			gl_hero1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_hero1.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_hero1.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_hero1.createSequentialGroup()
-							.addGroup(gl_hero1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(label1)
-								.addComponent(name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(19))
-						.addGroup(gl_hero1.createSequentialGroup()
-							.addComponent(hero1_stats, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)))
 					.addGroup(gl_hero1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_hero1.createSequentialGroup()
-							.addGroup(gl_hero1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(label2)
-								.addComponent(type, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(status))
-						.addComponent(lblExpbar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(basic, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+						.addComponent(hero1_stats, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+					.addGap(10)
+					.addGroup(gl_hero1.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblExpbar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(status))
 					.addGap(9)
-					.addGroup(gl_hero1.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(gl_hero1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_hero1.createSequentialGroup()
 							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnKill, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnKnockedOut, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+							.addComponent(btnKnockedOut, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_hero1.createSequentialGroup()
 							.addComponent(lblEquipment)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtEquipment, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addGap(4)
 							.addComponent(lblSkillsAnd)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtSkills, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(43, Short.MAX_VALUE))
+					.addContainerGap(12, Short.MAX_VALUE))
 		);
 		this.setLayout(gl_hero1);
 	}

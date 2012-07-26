@@ -1,15 +1,14 @@
 package code.gui.panels;
 
 import javax.swing.JPanel;
-
-import code.gui.items.HeroExpItem;
+import code.gui.items.OtherExpItem;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**A simple checklist of things to check off as you play to help you remember such as Did you use your armour save? [Check]*/
 public class CheckPanel extends JPanel {
-	HeroExpItem h;
+	OtherExpItem h;
 	int newExp = 10;
 	public CheckPanel() {
 		addMouseListener(new MouseAdapter() {
@@ -19,7 +18,7 @@ public class CheckPanel extends JPanel {
 			}
 		});
 		
-		h = new HeroExpItem(10,10);
+		h = new OtherExpItem(10,10);
 		add(h);
 		
 	}

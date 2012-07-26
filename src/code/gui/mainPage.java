@@ -53,7 +53,7 @@ public class MainPage extends JTabbedPane {
 				for (int i = 0; i < 6; i++) {
 					if (Program.warband.heroes[i] != null) {//Add Hero
 						heroes[i] = new HeroPanel(i);
-						heropan.addTab(heroes[i].type.getText(), null, heroes[i], null);
+						heropan.addTab(heroes[i].basic.modelType.getText(), null, heroes[i], null);
 					}
 					else if (hithero) {
 						AddPanel newpanel = new AddPanel("heroes",Program.addHeroList());
@@ -62,7 +62,7 @@ public class MainPage extends JTabbedPane {
 					}
 					if (Program.warband.henchmen[i] != null) {//Add Henchmen
 						henchmen[i] = new HenchPanel(i);
-						henchpan.addTab(henchmen[i].type.getText(), null, henchmen[i], null);
+						henchpan.addTab(henchmen[i].basic.modelType.getText(), null, henchmen[i], null);
 					}
 					else if (hithench) {
 						AddPanel newpanel = new AddPanel("henchmen",Program.addHenchmenList());
@@ -80,7 +80,8 @@ public class MainPage extends JTabbedPane {
 	public void updateAllTheStuff() {
 		general.updateWarband();
 		for (int i = 0; i < 6; i++) {
-			if (heroes[i] != null) heroes[i].updateWarband(i);
+			if (heroes[i] != null) heroes[i].updateWarband();
+			if (henchmen[i] != null) henchmen[i].updateWarband();
 		}
 	}
 }

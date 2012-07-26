@@ -1,21 +1,17 @@
 package code.xml;
 
 import java.io.File;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import code.Henchmen;
 import code.Heroes;
 import code.Program;
 import code.Warband;
 import code.XmlHandler;
-import code.gui.Gui;
 
 public class CreateWarband extends XmlHandler {
 	String type;
@@ -25,8 +21,6 @@ public class CreateWarband extends XmlHandler {
 	public CreateWarband(String name) {
 		type = name;
 		Program.baseWarband = unpackWarband("files/warband_"+name + ".xml");
-		Program.setupNewWarband();
-		Program.gui.change(Gui.pane.main);
 	}
 	
 	/**unpacks a warband from xml into a return, if it fails it will just return an empty warband*/
@@ -78,7 +72,7 @@ public class CreateWarband extends XmlHandler {
 					
 					hero.name = getString("name",e);
 					hero.type = getString("name",e);
-					hero.setStats(getArray("stats",10,e));
+					hero.setStats(getArray("stats",11,e));
 					hero.setSkills(getArray("skillTypes",10,e));
 					hero.min = getInt("min",e);
 					hero.max = getInt("max",e);
@@ -105,7 +99,7 @@ public class CreateWarband extends XmlHandler {
 					
 					hench.name = getString("name",e);
 					hench.type = getString("name",e);
-					hench.setStats(getArray("stats",10,e));
+					hench.setStats(getArray("stats",11,e));
 					
 					hench.skills = getString("skills",e);
 					hench.equipment = getString("equipment",e);
