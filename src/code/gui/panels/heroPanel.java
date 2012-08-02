@@ -18,6 +18,8 @@ import code.Heroes;
 import code.Program;
 import code.gui.items.HeroExpItem;
 import code.gui.items.NameAndType;
+import code.gui.popups.EquipmentPopup;
+import code.gui.popups.HeroInjuryChart;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -28,15 +30,15 @@ public class HeroPanel extends JPanel {
 	//Special stuff
 	public boolean removed = false;
 	private Heroes hero;
-	private JTextArea txtEquipment;
-	private JTextArea txtSkills;
+	public JTextArea txtEquipment;
+	public JTextArea txtSkills;
 	private JLabel status;//Alive / Dead
 	public JTable hero1_stats;//Stats
 	
 	//static
 	private JLabel lblEquipment;//equipment
 	private JLabel lblSkillsAnd;//skills
-	public JButton btnNewButton;//advancement
+	private JButton btnNewButton;//advancement
 	private JButton btnKill;//+1 exp
 	private JButton btnKnockedOut;//injury
 	private JButton btnRemove;//remove
@@ -121,6 +123,7 @@ public class HeroPanel extends JPanel {
 		setListeners();
 		setLayout();
 	}
+	
 	private void setListeners() {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -136,10 +139,9 @@ public class HeroPanel extends JPanel {
 				}
 			}
 		});
-		btnKill.addActionListener(new ActionListener() {
+		btnKnockedOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				basic.modelName.setText("I snuggle puppies");
-				//Advancement
+				new HeroInjuryChart(HeroPanel.this);
 			}
 		});
 		btnRemove.addActionListener(new ActionListener() {
@@ -150,6 +152,12 @@ public class HeroPanel extends JPanel {
 				//Program.warband.heroes[i] = null; //TODO: Shuffle the character into oblivion
 				//TODO: Add in a pop up with three options. (Remove (keep equipment), Remove Competely, Cancel)
 				//Program.gui.change(Gui.pane.main); //TODO: Remove this tab and add in a needed all the crap.
+			}
+		});
+		txtEquipment.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				new EquipmentPopup(txtEquipment);
 			}
 		});
 	}

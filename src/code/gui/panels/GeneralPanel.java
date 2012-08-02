@@ -3,7 +3,6 @@ package code.gui.panels;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -12,17 +11,30 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import code.Program;
 import code.gui.Gui;
 import code.gui.MainPage;
-import code.gui.popups.PopupBase;
+import code.gui.popups.EquipmentPopup;
 import code.xml.SaveWarband;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GeneralPanel extends JPanel {
 	private static final long serialVersionUID = -7099283888689089508L;
+	private JLabel lblWarbandType;
+	private JLabel lblWardStones;
+	private JLabel lblUpkeepCosts;
+	private JLabel lblWarbandName;
+	private JLabel lblRating;
+	private JLabel lblStoredEquipment;
+	private JLabel lblGoldCrowns;
+	private JLabel lblNewLabel;
+	private JLabel lblOtherStat;
+	private JButton btnSave;
+	private JButton btnQuit;
+	private JButton btnExploration;
+	private JButton btnAddEquipment;
+	private JButton btnNewBattle;
 	private JTextField name;
 	private JTextField type;
 	private JTextField goldcrowns;
@@ -44,64 +56,83 @@ public class GeneralPanel extends JPanel {
 	public GeneralPanel(MainPage t) {
 		setBackground(Color.LIGHT_GRAY);
 		main = t;
+		
 		//Name
-		JLabel lblWarbandName = new JLabel("Warband Name : ");
+		lblWarbandName = new JLabel("Warband Name : ");
 		name = new JTextField();
-		name.addInputMethodListener(new InputMethodListener() {
-			public void inputMethodTextChanged(InputMethodEvent arg0) {
-				Program.warband.name = name.getText();
-				System.out.println(Program.warband.name);//TODO: println
-			}
-			public void caretPositionChanged(InputMethodEvent event) {}
-		});
 		name.setText(Program.warband.name);
 		name.setColumns(10);
 		
 		//Type
-		JLabel lblWarbandType = new JLabel("Warband Type : ");
+		lblWarbandType = new JLabel("Warband Type : ");
 		type = new JTextField();
 		type.setEditable(false);
 		type.setText(Program.warband.type);
 		type.setColumns(10);
 		
 		//Money
-		JLabel lblGoldCrowns = new JLabel("Gold Crowns : ");
+		lblGoldCrowns = new JLabel("Gold Crowns : ");
 		goldcrowns = new JTextField();
 		goldcrowns.setText(""+Program.warband.goldcrowns);
 		goldcrowns.setColumns(10);
-		JLabel lblUpkeepCosts = new JLabel("Upkeep : ");
+		lblUpkeepCosts = new JLabel("Upkeep : ");
 		upkeep = new JTextField();
 		upkeep.setText(""+Program.warband.upkeep);
 		upkeep.setColumns(10);
-		JLabel lblWardStones = new JLabel("Ward Stones : ");
+		lblWardStones = new JLabel("Ward Stones : ");
 		wardstones = new JTextField();
 		wardstones.setText(""+Program.warband.wardstones);
 		wardstones.setColumns(10);
 		
 		//Rating, battle, warband size
-		JLabel lblRating = new JLabel("Rating : ");
+		lblRating = new JLabel("Rating : ");
 		rating = new JTextField();
 		rating.setText(""+Program.warband.rating);
 		rating.setColumns(10);
-		JLabel lblNewLabel = new JLabel("Battles : "+Program.warband.battles);
-		JLabel lblOtherStat = new JLabel("Warband Size : "+Program.warband.members);
+		lblNewLabel = new JLabel("Battles : "+Program.warband.battles);
+		lblOtherStat = new JLabel("Warband Size : "+Program.warband.members);
 		
 		//Equipment
-		JLabel lblStoredEquipment = new JLabel("Stored Equipment");
+		lblStoredEquipment = new JLabel("Stored Equipment");
 		textArea = new JTextArea();
+		textArea.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				new EquipmentPopup(textArea);
+			}
+		});
 		textArea.setRows(9);
 		
 		//Buttons
-		JButton btnSave = new JButton("Save");
+		btnSave = new JButton("Save");
 		btnSave.setBackground(Color.GREEN);
+		btnQuit = new JButton("Quit");
+		btnQuit.setBackground(Color.RED);
+		btnExploration = new JButton("Exploration");
+		btnAddEquipment = new JButton("Unused");		
+		btnNewBattle = new JButton("New Battle");
+		
+		setListeners();
+		layoutSetup();
+	}
+	private void setListeners() {
+		btnNewBattle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				main.updateAllTheStuff();
+				Program.warband.battles++;
+				for (int i = 0; i < 6; i++) {
+					if (Program.warband.heroes[i] != null) Program.warband.heroes[i].exp = Program.warband.heroes[i].exp2;
+					if (Program.warband.henchmen[i] != null) Program.warband.henchmen[i].exp = Program.warband.henchmen[i].exp2;
+				}
+				Program.gui.change(Gui.pane.main);
+			}
+		});
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Started to save the warband");//TODO println
 				main.updateAllTheStuff();
 				new SaveWarband();
 			}
 		});
-		JButton btnQuit = new JButton("Quit");
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {//TODO: Add in a popup instead of directly quitting.
 				Program.baseWarband = null;
@@ -109,16 +140,9 @@ public class GeneralPanel extends JPanel {
 				Program.gui.change(Gui.pane.start);
 			}
 		});
-		btnQuit.setBackground(Color.RED);
-		JButton btnExploration = new JButton("Exploration");
-		JButton btnAddEquipment = new JButton("Unused");		
-		JButton btnNewBattle = new JButton("New Battle");
-		btnNewBattle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new PopupBase();
-			}
-		});
-		
+	}
+	
+	private void layoutSetup() {
 		GroupLayout gl_generalpan = new GroupLayout(this);
 		gl_generalpan.setHorizontalGroup(
 			gl_generalpan.createParallelGroup(Alignment.LEADING)

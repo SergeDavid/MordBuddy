@@ -1,0 +1,83 @@
+<warband>
+	<general>
+		<name>Witch Hunters</name>
+		<gold>500</gold>
+		<minsize>3</minsize>
+		<maxsize>15</maxsize>
+		<rules></rules>
+		<skills></skills>
+	</general>
+	<heroes>
+		<hero>
+			<name>Witch Hunter Captain</name>
+			<stats>4,4,4,3,3,1,4,1,8,20,20</stats>
+			<skillTypes>true,true,true,true,true,false</skillTypes>
+			<min>1</min>
+			<max>1</max>
+			<cost>60</cost>
+			<race>human</race>
+			<skills>6" leader,burn the witch</skills>
+			<magic></magic>
+			<equipment></equipment>
+		</hero>
+		<hero>
+			<name>Witch Hunters</name>
+			<skillTypes>true,true,true,false,true,false</skillTypes>
+			<stats>4,3,3,3,3,1,3,1,7,8,8</stats>
+			<min>0</min>
+			<max>3</max>
+			<cost>25</cost>
+			<race>human</race>
+			<skills>burn the witch</skills>
+			<magic></magic>
+			<equipment></equipment>
+		</hero>
+		<hero>
+			<name>Warrior-Priest</name>
+			<skillTypes>true,false,true,true,false,false</skillTypes>
+			<stats>4,3,3,3,3,1,3,1,8,12,12</stats>
+			<min>0</min>
+			<max>1</max>
+			<cost>40</cost>
+			<race>human</race>
+			<skills>Prayers</skills>
+			<magic>todo</magic>
+			<equipment></equipment>
+		</hero>
+	</heroes>
+	<henchmen>
+		<group>
+			<name>Flagellants</name>
+			<stats>4,3,3,4,4,1,3,1,10,0,0</stats>
+			<min>0</min>
+			<max>5</max>
+			<size>5</size>
+			<cost>40</cost>
+			<race>human</race>
+			<skills>Fanatical</skills>
+			<equipment></equipment>
+		</group>
+		<group>
+			<name>Zealots</name>
+			<stats>4,2,2,3,3,1,3,1,7,0,0</stats>
+			<min>0</min>
+			<max>0</max>
+			<size>5</size>
+			<cost>20</cost>
+			<race>human</race>
+			<skills></skills>
+			<equipment></equipment>
+		</group>
+		<group>
+			<name>Warhounds</name>
+			<stats>6,4,0,4,3,1,4,1,5,0,0</stats>
+			<min>0</min>
+			<max>5</max>
+			<size>5</size>
+			<cost>15</cost>
+			<race>human</race>
+			<equipment></equipment>
+			<skills>Animals</skills>
+		</group>
+	</henchmen>
+</warband>

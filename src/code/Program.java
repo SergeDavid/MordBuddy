@@ -8,7 +8,7 @@ import code.gui.Gui;
 public class Program extends JFrame {
 	private static final long serialVersionUID = 2157888685830593633L;
 	public static final String name = "Mordheim Buddy";
-	public static final String version = "0.04";
+	public static final String version = "0.05";
 	
 	//functions
 	public static Gui gui;
@@ -17,10 +17,11 @@ public class Program extends JFrame {
 	//SetupThread is just implimented once on start up.
 	
 	//Master Lists
+	public static ArrayList<Race> races = new ArrayList<Race>();//TODO: racial max stats
 	public static ArrayList<Modifiers> skills = new ArrayList<Modifiers>();
 	public static ArrayList<Equipment> equipment = new ArrayList<Equipment>();
 	public static ArrayList<Modifiers> magic = new ArrayList<Modifiers>();
-	public static ArrayList<Modifiers> injuries = new ArrayList<Modifiers>();
+	public static ArrayList<Modifiers> injuries = new ArrayList<Modifiers>();//TODO: convert all to working xml and add descriptions.
 	
 	//working list
 	public static Warband warband;

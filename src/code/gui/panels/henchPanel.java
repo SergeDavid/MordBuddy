@@ -16,6 +16,8 @@ import code.Henchmen;
 import code.Program;
 import code.gui.items.NameAndType;
 import code.gui.items.OtherExpItem;
+import code.gui.popups.EquipmentPopup;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -104,6 +106,12 @@ public class HenchPanel extends JPanel {
 		//Equipment
 		lblEquipment = new JLabel("Equipment");
 		equipArea = new JTextArea();
+		equipArea.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				new EquipmentPopup(equipArea);
+			}
+		});
 		equipArea.setRows(4);
 		equipArea.setText(hench.equipment);
 		

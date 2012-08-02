@@ -6,14 +6,14 @@
 		<wardstones>3</wardstones>
 		<battles>4</battles>
 		<upkeep>20</upkeep>
-		<members>7</members>
+		<members>10</members>
 		<rating>43</rating>
 	</general>
 	<heroes>
 		<hero>
 			<name>William</name>
 			<type>Mercenary Captain</type>
-			<stats>4,4,4,3,3,1,4,1,8,20,25</stats>
+			<stats>4,4,4,3,3,1,4,1,8,20,42</stats>
 			<skills>Strippers</skills>
 			<equipment>Candy</equipment>
 		</hero>
@@ -29,7 +29,7 @@
 		<group>
 			<name>Dude</name>
 			<type>Warriors</type>
-			<stats>4,3,3,3,3,1,3,1,7,0,6</stats>
+			<stats>4,3,3,3,3,1,3,1,7,0,14</stats>
 			<skills>is my car</skills>
 			<equipment>where</equipment>
 			<members>1</members>
